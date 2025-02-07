@@ -1,6 +1,6 @@
 import { defaultMetadata } from "../shared/meta-data";
 import Navigation from "../shared/components/Navigation";
-import Customer from "../shared/components/Customer";
+// import Customer from "../shared/components/Customer";
 
 
 export const metadata = {
@@ -24,7 +24,7 @@ export default async function HomePage() {
         </button>
       </div>
       <Navigation />
-      <Customer />
+      {/* <Customer /> */}
       <div>
         <h2>Benefits of NFC Web Services</h2>
         <ul>
