@@ -4,11 +4,13 @@ import Photo from './components/Photo';
 import Contact from './components/Contact';
 import Map from './components/Map';
 import Reviews from './components/Reviews';
-import { FaMapPin, FaStar, FaCopy } from 'react-icons/fa';
+import { FaMapPin, FaStar } from 'react-icons/fa';
 import Custom404 from '../notfound';
 import { getProfileBySlug, getAllProfiles } from '@/app/shared/services/superbase.service';
 import Image from 'next/image';
 import Link from 'next/link';
+import CopyLinkButton from './components/CopyLinkButton';
+import RedirectIfNeeded from './components/RedirectIfNeeded';
 import Head from 'next/head';
 
 type PageParams = {
@@ -34,13 +36,6 @@ export async function generateMetadata({ params }: PageParams) {
   };
 }
 
-export async function generateStaticParams() {
-  const { data } = await getAllProfiles();
-  return data?.map((profile: { profile_name: string }) => ({
-    web_name: profile.profile_name,
-  })) || [];
-}
-
 const Page = async ({ params }: PageParams) => {
   const { web_name } = params;
   const { data: profileData, error } = await getProfileBySlug(web_name);
@@ -48,6 +43,8 @@ const Page = async ({ params }: PageParams) => {
   if (error || !profileData) {
     return <Custom404 />;
   }
+
+
 
   const menuItems = [
     "ปลากระพงทดน้ำปลา",
@@ -57,25 +54,30 @@ const Page = async ({ params }: PageParams) => {
     "ปลากระพงทดน้ำปลา",
   ];
 
-  const copyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    alert('Link copied to clipboard!');
-  };
-
   return (
     <>
       <Head>
-        <title>{`Profile of ${profileData.profile_name}`}</title>
+        <title>{`${profileData.profile_name}`}</title>
         <meta name="description" content={`This is the profile page for ${profileData.profile_name}.`} />
         <meta name="keywords" content="profile, restaurant, menu, reviews, contact" />
         <meta name="author" content={profileData.profile_name} />
       </Head>
       <Header />
-      <div className="container mx-auto text-center p-4 bg-slate-100 min-h-screen">
-        <div className="shadow-sm rounded-lg space-y-4 p-6 max-w-4xl mx-auto relative bg-white">
-          <h1 className="text-2xl text-slate-700">{profileData.profile_name}</h1>
-          <div className="flex justify-center mx-auto rounded-full w-24 h-24 overflow-hidden">
-            <Image src={"/logo.jpg"} width={96} height={96} className='' alt={profileData.profile_name} />
+      <RedirectIfNeeded isReviewRedirect={profileData.is_review_redirect} reviewUrl={profileData.review_url} />
+      <div className="container mx-auto text-center p-4 bg-slate-100 max-h-[80vh]">
+        <div className="flex justify-end gap-3  mb-2">
+          <Link href="/" className='bg-white rounded-[10px] p-2 w-full flex items-center'>
+            <FaStar className="text-yellow-500" />
+            review
+          </Link>
+          <CopyLinkButton />
+        </div>
+        <div className="shadow-sm rounded-lg  space-y-4 p-6 max-w-4xl mx-auto relative bg-white "
+
+        >
+          <h2 className="text-2xl text-slate-700">{profileData.profile_name}</h2>
+          <div className="flex justify-center mx-auto ">
+            <Image src={"/logo.jpg"} width={96} height={96} className='rounded-full w-[90px] h-[90px] overflow-hidden' alt={profileData.profile_name} />
           </div>
           <div className="text-lg">
             <p>ข้อมูลร้าน</p>
@@ -96,6 +98,7 @@ const Page = async ({ params }: PageParams) => {
                 </div>
               ))}
             </div>
+
           </div>
           <div className="text-left">
             <h2 className="text-xl font-semibold">รีวิว</h2>
@@ -107,17 +110,13 @@ const Page = async ({ params }: PageParams) => {
             </div>
             {/* <Reviews reviews={profileData.reviews} /> */}
           </div>
-          <div className="text-left flex items-center gap-2">
+          <div className="text-left">
             <Link href="/" className='bg-blue-400 rounded-[10px] p-2 flex items-center w-fit'>
               <FaMapPin className="text-red-500" />
               ออกเดินทาง
             </Link>
-            <button onClick={copyLink} className='bg-gray-200 rounded-[10px] p-2 flex items-center w-fit'>
-              <FaCopy className="text-gray-600" />
-              คัดลอกลิงก์
-            </button>
           </div>
-          <div className="absolute bottom-0 right-0">
+          <div className="absolute  bottom-0 right-0">
             <Image src={"/thai-currey.png"} width={120} height={120} className='' alt={profileData.profile_name} />
           </div>
         </div>

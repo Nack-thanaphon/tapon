@@ -5,6 +5,7 @@ const Header = ({ title }: any) => {
         <header>
             <h1>{title}</h1>
         </header>
+
     );
 };
 

@@ -22,6 +22,7 @@ export interface ProfileData {
   phone: string;
   email: string;
   website: string;
+  is_review_redirect: boolean;
   photo: string;
   location: string;
   reviews: string[];
@@ -92,7 +93,7 @@ const getProfileBySlug = async (slug: string): Promise<SupabaseResponse<ProfileD
   const { data, error } = await supabase
     .from('business_profiles')
     .select('*')
-    .eq('profile_name', slug)
+    .eq('slug', slug)
     .single();
 
   if (error) {
