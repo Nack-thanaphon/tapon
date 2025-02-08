@@ -30,7 +30,7 @@ const Customer = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-2">
                 {data.map((item) => (
                     <Link
-                        href={`/${item.profile_name}`}
+                        href={`/${item.slug}`}
                         key={item.id}
                         className="block transition-transform duration-200 hover:scale-102"
                     >

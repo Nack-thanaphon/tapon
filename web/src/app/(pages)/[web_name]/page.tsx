@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from './components/Header';
 import Photo from './components/Photo';
@@ -12,6 +13,8 @@ import Link from 'next/link';
 import CopyLinkButton from './components/CopyLinkButton';
 import RedirectIfNeeded from './components/RedirectIfNeeded';
 import Head from 'next/head';
+import Footer from './components/Footer';
+import Menu from './components/Menu';
 
 type PageParams = {
   params: {
@@ -33,6 +36,8 @@ export async function generateMetadata({ params }: PageParams) {
   return {
     title: `Profile of ${profileData.profile_name}`,
     description: `This is the profile page for ${profileData.profile_name}.`,
+    keywords: 'profile, restaurant, menu, reviews, contact',
+    image: 'logo.jpg',
   };
 }
 
@@ -45,30 +50,15 @@ const Page = async ({ params }: PageParams) => {
   }
 
 
-
-  const menuItems = [
-    "ปลากระพงทดน้ำปลา",
-    "ปลากระพงทดน้ำปลา",
-    "ปลากระพงทดน้ำปลา",
-    "ปลากระพงทดน้ำปลา",
-    "ปลากระพงทดน้ำปลา",
-  ];
-
   return (
     <>
-      <Head>
-        <title>{`${profileData.profile_name}`}</title>
-        <meta name="description" content={`This is the profile page for ${profileData.profile_name}.`} />
-        <meta name="keywords" content="profile, restaurant, menu, reviews, contact" />
-        <meta name="author" content={profileData.profile_name} />
-      </Head>
       <Header />
-      <RedirectIfNeeded isReviewRedirect={profileData.is_review_redirect} reviewUrl={profileData.review_url} />
-      <div className="container mx-auto text-center p-4 bg-slate-100 max-h-[80vh]">
+      {/* <RedirectIfNeeded isReviewRedirect={profileData.is_review_redirect} reviewUrl={profileData.review_url} /> */}
+      <div className="container mx-auto text-center p-4  ">
         <div className="flex justify-end gap-3  mb-2">
           <Link href="/" className='bg-white rounded-[10px] p-2 w-full flex items-center'>
-            <FaStar className="text-yellow-500" />
-            review
+            <FaStar className="text-yellow-500 mr-2" />
+            Review (click here)
           </Link>
           <CopyLinkButton />
         </div>
@@ -80,7 +70,6 @@ const Page = async ({ params }: PageParams) => {
             <Image src={"/logo.jpg"} width={96} height={96} className='rounded-full w-[90px] h-[90px] overflow-hidden' alt={profileData.profile_name} />
           </div>
           <div className="text-lg">
-            <p>ข้อมูลร้าน</p>
             <b className="text-slate-500">063-674-9204</b> <br />
             <small className="text-slate-500">ทุ่งเสลี่ยม สุโขทัย</small>
           </div>
@@ -90,15 +79,7 @@ const Page = async ({ params }: PageParams) => {
           </div>
           <div className="text-left">
             <h2 className="text-xl font-semibold">เมนูเด็ด</h2>
-            <div className="space-y-2 overflow-y-auto max-h-48 py-3">
-              {menuItems.map((item, index) => (
-                <div key={index} className="flex items-center gap-5">
-                  <Image src={"/logo.jpg"} width={50} height={50} className='rounded-lg' alt={profileData.profile_name} />
-                  <small className="text-gray-600">{item}</small>
-                </div>
-              ))}
-            </div>
-
+            <Menu />
           </div>
           <div className="text-left">
             <h2 className="text-xl font-semibold">รีวิว</h2>
@@ -120,6 +101,7 @@ const Page = async ({ params }: PageParams) => {
             <Image src={"/thai-currey.png"} width={120} height={120} className='' alt={profileData.profile_name} />
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

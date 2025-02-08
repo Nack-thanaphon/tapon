@@ -24,6 +24,7 @@ export interface ProfileData {
   website: string;
   is_review_redirect: boolean;
   photo: string;
+  slug:string;
   location: string;
   reviews: string[];
 };
