@@ -9,7 +9,7 @@ import Autoplay from 'swiper';
 
 import Image from 'next/image';
 
-const menuItems = [
+const menuItem = [
   { name: "ผัดไทย", image: "/images/pad-thai.jpg" },
   { name: "ต้มยำกุ้ง", image: "/images/tom-yum-goong.jpg" },
   { name: "แกงเขียวหวาน", image: "/images/green-curry.jpg" },
@@ -17,7 +17,15 @@ const menuItems = [
   { name: "ส้มตำ", image: "/images/som-tum.jpg" },
 ];
 
-const Menu = () => {
+const Menu = (
+  //   { menuItem }: {
+  //   menuItem: {
+  //     name: string;
+  //     image: string;
+  //     price: string;
+  //   }[];
+  // }
+) => {
   return (
     <div className="my-2">
       <Swiper
@@ -38,7 +46,7 @@ const Menu = () => {
           },
         }}
       >
-        {menuItems.map((item, index) => (
+        {menuItem.map((item, index) => (
           <SwiperSlide key={index} className="mx-auto rounded-lg border p-2">
             <Image src={"/thai-currey.png"} alt={item.name} width={200} height={200} className="rounded-lg mx-auto" />
             <h3 className="text-center mt-2">{item.name}</h3>

@@ -19,12 +19,23 @@ export interface ProfileData {
   review_url: string;
   youtube_url: string;
   tiktok_url: string;
+  logo: string;
   phone: string;
   email: string;
   website: string;
   is_review_redirect: boolean;
+  is_menu: boolean;
+  is_review: boolean;
+  is_deliverly: boolean;
+  menu: {
+    name: string;
+    image: string;
+    price: string;
+  }[];
   photo: string;
-  slug:string;
+  slug: string;
+  address: string;
+  type: string;
   location: string;
   reviews: string[];
 };

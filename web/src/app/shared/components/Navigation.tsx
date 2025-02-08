@@ -1,3 +1,6 @@
+"use client"
+ 
+
 import {
   Menubar,
   MenubarContent,
@@ -6,21 +9,36 @@ import {
   MenubarSeparator,
   MenubarShortcut,
   MenubarTrigger,
-} from "@/components/ui/menubar"
-import Link from 'next/link';
-import React from 'react';
+} from "@/components/ui/menubar";
+import React, { RefObject } from 'react';
 
-const Navigation = () => {
+type Sections = {
+  home: RefObject<HTMLElement>;
+  promotion: RefObject<HTMLElement>;
+  contact: RefObject<HTMLElement>;
+  clients: RefObject<HTMLElement>;
+  reviews: RefObject<HTMLElement>;
+};
+
+type NavigationProps = {
+  sections: Sections;
+};
+
+const Navigation: React.FC<NavigationProps> = ({ sections }) => {
+  const scrollToSection = (section: RefObject<HTMLElement>) => {
+    section.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <Menubar>
       <MenubarMenu>
-        <MenubarTrigger>Home</MenubarTrigger>
-        <MenubarTrigger>Promotion</MenubarTrigger>
-        <MenubarTrigger>Contact</MenubarTrigger>
-        <MenubarTrigger>Contact</MenubarTrigger>
+        <MenubarTrigger onClick={() => scrollToSection(sections.home)}>Home</MenubarTrigger>
+        <MenubarTrigger onClick={() => scrollToSection(sections.promotion)}>Promotion</MenubarTrigger>
+        <MenubarTrigger onClick={() => scrollToSection(sections.contact)}>Contact</MenubarTrigger>
+        <MenubarTrigger onClick={() => scrollToSection(sections.clients)}>Clients</MenubarTrigger>
+        <MenubarTrigger onClick={() => scrollToSection(sections.reviews)}>Reviews</MenubarTrigger>
       </MenubarMenu>
     </Menubar>
-
   );
 };
 
