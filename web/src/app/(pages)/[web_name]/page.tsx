@@ -35,9 +35,9 @@ export async function generateMetadata({ params }: PageParams) {
 }
 
 export async function generateStaticParams() {
-  const { data: profiles } = await getAllProfiles();
-  return profiles?.map((profile: { profileName: string }) => ({
-    web_name: profile.profileName,
+  const { data } = await getAllProfiles();
+  return data?.map((profile: { profile_name: string }) => ({
+    web_name: profile.profile_name,
   })) || [];
 }
 

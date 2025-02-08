@@ -12,7 +12,7 @@ interface Profile {
 }
 
 
-interface ProfileData {
+export interface ProfileData {
   id: number;
   profile_name: string;
   details: string;
@@ -75,8 +75,7 @@ const updateProfile = async (id: number, profile: Profile): Promise<SupabaseResp
   return { data, error: null };
 };
 
-
-const getAllProfiles = async (): Promise<SupabaseResponse<Profile[]>> => {
+const getAllProfiles = async (): Promise<SupabaseResponse<ProfileData[]>> => {
   const { data, error } = await supabase
     .from('business_profiles')
     .select('*');
@@ -87,6 +86,7 @@ const getAllProfiles = async (): Promise<SupabaseResponse<Profile[]>> => {
   }
   return { data, error: null };
 };
+
 
 const getProfileBySlug = async (slug: string): Promise<SupabaseResponse<ProfileData>> => {
   const { data, error } = await supabase
