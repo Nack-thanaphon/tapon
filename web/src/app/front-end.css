@@ -2,11 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: 'NotoSansThai';
+  src: url('/font/Noto_Sans_Thai/static/NotoSansThai-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Noto Sans Thai", sans-serif;
+  font-family: "NotoSansThai" !important;
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;

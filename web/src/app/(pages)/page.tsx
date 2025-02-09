@@ -1,9 +1,12 @@
 "use client"
 
 import Navigation from "../shared/components/Navigation";
-import Customer from "../shared/components/Customer";
+import { FaCut, FaClinicMedical, FaUtensils } from 'react-icons/fa';
 import Image from 'next/image';
 import React, { useRef } from 'react';
+import Link from "next/link";
+import Compare from "../shared/components/Compare";
+import PackageComponent from "../shared/components/Package";
 
 export default function HomePage() {
   const homeRef = useRef(null);
@@ -22,55 +25,76 @@ export default function HomePage() {
 
   return (
     <>
-      <Navigation sections={sections} />
-      <div ref={homeRef} className="bg-gray-200 text-center p-12">
-        <h1 className="text-3xl font-bold text-gray-900">Expand Your Business Horizons with NFC Web Services</h1>
-        <p className="text-xl text-gray-700 mt-4">Fast, reliable, and scalable solutions tailored to boost your market presence.</p>
-        <button className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Learn More
-        </button>
-      </div>
+      <div className="container mx-auto p-2 space-y-2">
+        <Navigation sections={sections} />
+        <div className="pt-[4rem]"></div>
+        <div ref={homeRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8 h-fit  space-y-2">
+          <h1 className="text-3xl font-bold text-gray-900">🔥 เพิ่มดาว ⭐ เพิ่มรีวิว 📢 เพิ่มคนรู้จัก</h1>
+          <p className="text-xl text-gray-700 mt-4">ดันร้านติดอันดับ เพิ่มยอดขายได้ง่ายๆ ด้วย SEO + NFC 🚀</p>
+          <Image src={"/image/hero.jpg"} width={300} height={300} alt='nfc+seo' className="mx-auto py-3 rounded-[20px]" />
+          <div className="w-fit mx-auto">
+            <Link href={'/register'} className="mt-8 bg-blue-500 mr-2 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded">
+              สนใจสั่งซื้อ
+            </Link>
+            <Link href={'/suriyan'} className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded">
+              ตัวอย่างโปรไฟล์
+            </Link>
+          </div>
+        </div>
 
-      <div className="container mx-auto p-6">
-        <section className="my-8 h-screen">
-          <h2 className="text-2xl font-semibold">Our Customer</h2>
+        {/* 
+        <section className="bg-white rounded-[10px] shadow-sm   text-center p-8 h-fit my-auto bg-white rounded-[10px] shadow-sm   text-center p-8 h-fit my-auto my-8  my-8 h-screen">
+          <h2 className="text-2xl font-semibold">ลูกค้าของเรา</h2>
           <Customer />
-        </section>
-        <section ref={promotionRef} className="my-8 h-screen">
-          <h2 className="text-2xl font-semibold">Benefits of NFC Web Services</h2>
-          <ul className="list-disc list-inside mt-4 text-gray-700">
-            <li>Scalable solutions that grow with your business.</li>
-            <li>Easy integration with multiple platforms.</li>
-            <li>Enhance your market presence with minimal effort.</li>
-          </ul>
-        </section>
-        <section ref={contactRef} className="my-8 h-screen">
+        </section> */}
+        <Compare />
+
+        <section ref={promotionRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8  my-auto my-8  my-8 h-fit">
           <h2 className="text-2xl font-semibold">Packages</h2>
-          <ul className="list-disc list-inside mt-4 text-gray-700">
-            <li>Basic Package: Essential features to get you started.</li>
-            <li>Pro Package: Advanced features for growing businesses.</li>
-            <li>Enterprise Package: Comprehensive solutions for large enterprises.</li>
-          </ul>
+          <PackageComponent />
         </section>
-        <section ref={clientsRef} className="my-8 h-screen">
-          <h2 className="text-2xl font-semibold">Contact Us</h2>
-          <p className="mt-4 text-gray-700">For inquiries, please email us at <a href="mailto:contact@tap-on.com" className="text-blue-500">contact@tap-on.com</a> or call us at (123) 456-7890.</p>
+        <section ref={clientsRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8  my-auto my-8  my-8 h-fit">
+          <h2 className="text-2xl font-semibold text-nowrap">ทำไมต้องเรา ?</h2>
+          <p>&quot;เพราะเรามอบมากกว่าแค่รีวิว แต่คือการสร้างอนาคตให้ธุรกิจของคุณ&quot;</p>
+          <div className="mt-4 w-fit mx-auto">
+            <iframe
+              width="full"
+              height="215"
+              src="https://www.youtube.com/embed/sH0YJy_BHVE"
+              title="YouTube video player"
+              frameBorder="0"
+              className="rounded-[10px]"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
         </section>
-        <section ref={reviewsRef} className="my-8 h-screen">
-          <h2 className="text-2xl font-semibold">Our Clients</h2>
-          <ul className="list-disc list-inside mt-4 text-gray-700">
-            <li>Client A: Leading industry player.</li>
-            <li>Client B: Innovative solutions provider.</li>
-            <li>Client C: Trusted by thousands.</li>
-          </ul>
+        <section ref={reviewsRef} className="bg-white rounded-[10px] shadow-sm text-center p-8 h-fit my-auto my-8 space-y-4">
+          <h2 className="text-2xl font-semibold">ลูกค้าของเรา</h2>
+          <div className="flex flex-col items-start space-y-2">
+            <div className="flex items-center space-x-2">
+              <FaCut className="text-blue-500" />
+              <p className="text-lg">20 ร้านเสริมสวย</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FaClinicMedical className="text-blue-500" />
+              <p className="text-lg">13 คลีนิค</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <FaUtensils className="text-blue-500" />
+              <p className="text-lg">70 ร้านอาหาร</p>
+            </div>
+          </div>
         </section>
-        <section className="my-8 h-screen">
-          <h2 className="text-2xl font-semibold text-red-400">Reviews</h2>
-          <ul className="list-disc list-inside mt-4 text-gray-700">
-            <li>John Doe: &quot;Scalable solutions that grow with your business.&quot;</li>
-            <li>Jane Smith: &quot;Easy integration with multiple platforms.&quot;</li>
-            <li>Sam Wilson: &quot;Enhance your market presence with minimal effort.&quot;</li>
-          </ul>
+        <section ref={contactRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8 h-fit my-auto my-8  my-8 h-screen">
+          <Image src={"/logo.png"} width={90} height={90} alt='nfc+seo' className="mx-auto py-3 rounded-[20px]" />
+          <h2 className="text-2xl font-semibold text-blue-400">ติดต่อ</h2>
+          ต้องการสอบถามข้อมูลเพิ่มเติม
+          <h2 className="text-2xl font-bold">tap-on-it.com</h2>
+          <p>063-674-9204</p>
+          <p>support@tap-on-it.com</p>
+          <Image src={"/bussiness-logo.jpeg"} width={300} height={300} alt='nfc+seo' className="mx-auto py-3 rounded-[20px]" />
+
         </section>
       </div>
     </>

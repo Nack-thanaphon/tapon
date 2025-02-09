@@ -1,15 +1,4 @@
 "use client"
- 
-
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
 import React, { RefObject } from 'react';
 
 type Sections = {
@@ -30,15 +19,11 @@ const Navigation: React.FC<NavigationProps> = ({ sections }) => {
   };
 
   return (
-    <Menubar>
-      <MenubarMenu>
-        <MenubarTrigger onClick={() => scrollToSection(sections.home)}>Home</MenubarTrigger>
-        <MenubarTrigger onClick={() => scrollToSection(sections.promotion)}>Promotion</MenubarTrigger>
-        <MenubarTrigger onClick={() => scrollToSection(sections.contact)}>Contact</MenubarTrigger>
-        <MenubarTrigger onClick={() => scrollToSection(sections.clients)}>Clients</MenubarTrigger>
-        <MenubarTrigger onClick={() => scrollToSection(sections.reviews)}>Reviews</MenubarTrigger>
-      </MenubarMenu>
-    </Menubar>
+    <div className="fixed flex justify-center py-4 bg-white rounded-[10px]  shadow-sm w-screen left-0 top-0">
+      <div className="py-2 rounded-[10px] mx-2 px-3 bg-blue-500 hover:bg-blue-700 text-white" onClick={() => scrollToSection(sections.home)}>หน้าหลัก</div>
+      <div className="py-2 rounded-[10px] mx-2 px-3 bg-blue-500 hover:bg-blue-700 text-white" onClick={() => scrollToSection(sections.promotion)}>โปรโมชั่น</div>
+      <div className="py-2 rounded-[10px] mx-2 px-3 bg-blue-500 hover:bg-blue-700 text-white" onClick={() => scrollToSection(sections.contact)}>ติดต่อ</div>
+    </div>
   );
 };
 
