@@ -2,19 +2,17 @@
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, Grid } from "swiper/modules";
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import Autoplay from 'swiper';
 
 import Image from 'next/image';
 
 const menuItem = [
-  { name: "ผัดไทย", image: "/images/pad-thai.jpg" },
-  { name: "ต้มยำกุ้ง", image: "/images/tom-yum-goong.jpg" },
-  { name: "แกงเขียวหวาน", image: "/images/green-curry.jpg" },
-  { name: "ข้าวผัดปู", image: "/images/crab-fried-rice.jpg" },
-  { name: "ส้มตำ", image: "/images/som-tum.jpg" },
+  { name: "ผัดไทย", image: "/image/shimp.jpg" },
+  { name: "ต้มยำกุ้ง", image: "/image/curry.png" },
 ];
 
 const Menu = (
@@ -32,8 +30,8 @@ const Menu = (
         spaceBetween={30}
         slidesPerView={3}
         pagination={{ clickable: true }}
-        // navigation={true}
-        autoplay={{ delay: 1000, disableOnInteraction: false }}
+        modules={[Navigation, Autoplay, Grid]}
+        autoplay={{ delay: 6000 }}
         breakpoints={{
           1024: {
             slidesPerView: 2,
@@ -47,8 +45,8 @@ const Menu = (
         }}
       >
         {menuItem.map((item, index) => (
-          <SwiperSlide key={index} className="mx-auto rounded-lg border p-2">
-            <Image src={"/thai-currey.png"} alt={item.name} width={200} height={200} className="rounded-lg mx-auto" />
+          <SwiperSlide key={index} className="mx-auto rounded-lg border h-full p-2">
+            <Image src={item.image} alt={item.name} width={200} height={200} className="rounded-lg h-full mx-auto" />
             <h3 className="text-center mt-2">{item.name}</h3>
           </SwiperSlide>
         ))}
