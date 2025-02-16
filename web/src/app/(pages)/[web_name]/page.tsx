@@ -72,10 +72,10 @@ const Page = async ({ params }: PageParams) => {
             <h2 className="text-xl font-semibold">ประเภท</h2>
             <small className="text-slate-600">{profileData.type}</small>
           </div>
-          <div className="text-left">
+          {/* <div className="text-left">
             <h2 className="text-xl font-semibold">เมนูเด็ด</h2>
             <Menu />
-          </div>
+          </div> */}
           <div className="text-left">
             {/* get third api */}
             <h2 className="text-xl font-semibold">รีวิว (4.5)</h2>

@@ -19,10 +19,10 @@ const Navigation: React.FC<NavigationProps> = ({ sections }) => {
   };
 
   return (
-    <div className="fixed flex justify-center py-4 bg-white rounded-[10px]  shadow-sm w-screen left-0 top-0">
-      <div className="py-2 rounded-[10px] mx-2 px-3 bg-blue-500 hover:bg-blue-700 text-white" onClick={() => scrollToSection(sections.home)}>หน้าหลัก</div>
-      <div className="py-2 rounded-[10px] mx-2 px-3 bg-blue-500 hover:bg-blue-700 text-white" onClick={() => scrollToSection(sections.promotion)}>โปรโมชั่น</div>
-      <div className="py-2 rounded-[10px] mx-2 px-3 bg-blue-500 hover:bg-blue-700 text-white" onClick={() => scrollToSection(sections.contact)}>ติดต่อ</div>
+    <div className="fixed flex justify-center py-4 bg-white rounded-[10px]  shadow-sm w-full left-0 top-0">
+      <div className="py-2 rounded-[20px] text-center mx-2 px-3 h-fit bg-blue-500 hover:bg-blue-700 text-white" onClick={() => scrollToSection(sections.home)}>หน้าหลัก</div>
+      <div className="py-2 rounded-[20px] text-center mx-2 px-3 h-fit bg-blue-500 hover:bg-blue-700 text-white" onClick={() => scrollToSection(sections.contact)}>ติดต่อ</div>
+      <a href='https://www.facebook.com/taponitt' className="py-2 rounded-[20px] text-center mx-2 px-3 max-w-md h-fit bg-green-500 hover:bg-green-700 text-white" >สั่งซื้อตอนนี้</a>
     </div>
   );
 };

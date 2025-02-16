@@ -28,17 +28,36 @@ export default function HomePage() {
       <div className="container mx-auto p-2 space-y-2">
         <Navigation sections={sections} />
         <div className="pt-[4rem]"></div>
-        <div ref={homeRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8 h-fit  space-y-2">
-          <h1 className="text-3xl font-bold text-gray-900">🔥 เพิ่มดาว ⭐ เพิ่มรีวิว 📢 เพิ่มคนรู้จัก</h1>
-          <p className="text-xl text-gray-700 mt-4">ดันร้านติดอันดับ เพิ่มยอดขายได้ง่ายๆ ด้วย SEO + NFC 🚀</p>
-          <Image src={"/image/hero.jpg"} width={300} height={300} alt='nfc+seo' className="mx-auto py-3 rounded-[20px]" />
-          <div className="w-fit mx-auto">
-            <Link href={'/register'} className="mt-8 bg-blue-500 mr-2 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded">
-              สนใจสั่งซื้อ
-            </Link>
-            <Link href={'/suriyan'} className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded">
-              ตัวอย่างโปรไฟล์
-            </Link>
+        <div ref={homeRef} className="bg-white rounded-[10px] shadow-sm   text-start p-8 h-fit  space-y-2">
+          <h1 className="text-3xl font-bold text-gray-900">
+            🚀 ระบบโปรไฟล์
+          </h1>
+          <h1 className="text-3xl font-bold text-gray-900">
+            🚀 ปักหมุด GOOGLE
+          </h1>
+          <h1 className="text-3xl font-bold text-gray-900">
+            🚀 NFC + SEO
+          </h1>
+          <h1 className="text-3xl font-bold text-gray-900">
+            🚀 ปักหมุด GOOGLE
+          </h1>
+          <div className="pt-5">
+            <h1 className="text-1xl font-bold text-gray-900">
+              เพิ่มคะแนน review ให้ธุรกิจคุณ</h1>
+
+            <p className="text-xl text-gray-700 mt-4">ดันร้านติดอันดับ เพิ่มยอดขายได้ง่ายๆ ด้วย SEO + NFC 🚀</p>
+            <div className="mt-8">
+              <Link href={'/thepprathan-place'} className="mt-8 bg-blue-500 hover:bg-blue-700 !text-white font-bold py-2 px-5 rounded-[20px]">
+                ตัวอย่างโปรไฟล์
+              </Link>
+            </div>
+            <Image src={"/image/hero.jpg"} width={300} height={300} alt='nfc+seo' className="mx-auto py-3 my-5 rounded-[20px]" />
+            <div className="w-fit mx-auto mt-5">
+              {/* <Link href={'/register'} className="mt-8 bg-blue-500 mr-2 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded">
+                สนใจสั่งซื้อ
+              </Link> */}
+
+            </div>
           </div>
         </div>
 
@@ -49,10 +68,10 @@ export default function HomePage() {
         </section> */}
         <Compare />
 
-        <section ref={promotionRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8  my-auto my-8  my-8 h-fit">
+        {/* <section ref={promotionRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8  my-auto my-8  my-8 h-fit">
           <h2 className="text-2xl font-semibold">Packages</h2>
           <PackageComponent />
-        </section>
+        </section> */}
         <section ref={clientsRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8  my-auto my-8  my-8 h-fit">
           <h2 className="text-2xl font-semibold text-nowrap">ทำไมต้องเรา ?</h2>
           <p>&quot;เพราะเรามอบมากกว่าแค่รีวิว แต่คือการสร้างอนาคตให้ธุรกิจของคุณ&quot;</p>
@@ -86,7 +105,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section ref={contactRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8 h-fit my-auto my-8  my-8 h-screen">
+        <section ref={contactRef} className="bg-white rounded-[10px] shadow-sm    text-center p-8 h-fit  my-8">
           <Image src={"/logo.png"} width={90} height={90} alt='nfc+seo' className="mx-auto py-3 rounded-[20px]" />
           <h2 className="text-2xl font-semibold text-blue-400">ติดต่อ</h2>
           ต้องการสอบถามข้อมูลเพิ่มเติม
@@ -94,7 +113,6 @@ export default function HomePage() {
           <p>063-674-9204</p>
           <p>support@tap-on-it.com</p>
           <Image src={"/bussiness-logo.jpeg"} width={300} height={300} alt='nfc+seo' className="mx-auto py-3 rounded-[20px]" />
-
         </section>
       </div>
     </>
