@@ -1,28 +1,22 @@
-import { NextRequest, NextResponse } from 'next/server';
+// filepath: /Users/dev_nack/Desktop/ppc-web/src/middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import UAParser from 'ua-parser-js';
 
 export function middleware(request: NextRequest) {
-  const { nextUrl } = request;
-  const host = request.headers.get('host') || '';
-  const url = nextUrl.clone();
+  const ua = request.headers.get('user-agent') || '';
+  const parser = new UAParser(ua);
+  const deviceType = parser.getDevice().type;
 
-  // Local dev check
-  if (host.includes('localhost')) {
-    return NextResponse.next();
-  }
-
-  // Only handle subdomains of tap-it-on.com
-  if (!host.endsWith('.tap-it-on.com')) {
-    return NextResponse.next();
-  }
-
-  const subdomain = host.replace('.tap-it-on.com', '');
-
-  // Serve main domain or 'www' without rewriting
-  if (!subdomain || subdomain === 'www' || subdomain === 'tap-it-on') {
-    return NextResponse.next();
-  }
-
-  // Rewrite subdomain => /[web_name]
-  url.pathname = `/${subdomain}${url.pathname}`;
-  return NextResponse.rewrite(url);
+  // if (deviceType === 'mobile') {
+  //   console.log('Redirecting to mobile');
+  //   return NextResponse.rewrite(new URL('/(front)/(mobile)', request.url));
+  // } else {
+  //   console.log('Redirecting to client');
+  return NextResponse.rewrite(new URL('/', request.url));
+  // }
 }
+
+export const config = {
+  matcher: ['/'],
+};

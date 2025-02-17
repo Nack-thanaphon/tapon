@@ -1,119 +1,219 @@
-"use client"
+"use client";
 
-import Navigation from "../shared/components/Navigation";
-import { FaCut, FaClinicMedical, FaUtensils } from 'react-icons/fa';
-import Image from 'next/image';
-import React, { useRef } from 'react';
+import Image from "next/image";
 import Link from "next/link";
-import Compare from "../shared/components/Compare";
-import PackageComponent from "../shared/components/Package";
+import { FaFingerprint, FaLink, FaStar, FaCheckCircle, FaUserTie, FaChartLine, FaMobile, FaComments } from "react-icons/fa";
 
 export default function HomePage() {
-  const homeRef = useRef(null);
-  const promotionRef = useRef(null);
-  const contactRef = useRef(null);
-  const clientsRef = useRef(null);
-  const reviewsRef = useRef(null);
-
-  const sections = {
-    home: homeRef,
-    promotion: promotionRef,
-    contact: contactRef,
-    clients: clientsRef,
-    reviews: reviewsRef,
-  };
-
   return (
-    <>
-      <div className="container mx-auto p-2 space-y-2">
-        <Navigation sections={sections} />
-        <div className="pt-[4rem]"></div>
-        <div ref={homeRef} className="bg-white rounded-[10px] shadow-sm   text-start p-8 h-fit  space-y-2">
-          <h1 className="text-3xl font-bold text-gray-900">
-            🚀 ระบบโปรไฟล์
+    <main className="bg-black text-white min-h-screen">
+      {/* HERO SECTION */}
+      <section className="relative flex items-center justify-center min-h-screen text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900 opacity-90"></div>
+        <Image
+          src="/image/15575663.gif"
+          alt="Hero background"
+          fill
+          className="object-cover opacity-30"
+          priority
+        />
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <h1 className="text-5xl md:text-6xl font-extrabold uppercase leading-[1.2]">
+            <span className="text-blue-500">ยกระดับ</span>ธุรกิจของคุณ
+            <br /> ด้วยเทคโนโลยี <span className="text-blue-300">NFC</span>
           </h1>
-          <h1 className="text-3xl font-bold text-gray-900">
-            🚀 ปักหมุด GOOGLE
-          </h1>
-          <h1 className="text-3xl font-bold text-gray-900">
-            🚀 NFC + SEO
-          </h1>
-          <h1 className="text-3xl font-bold text-gray-900">
-            🚀 ปักหมุด GOOGLE
-          </h1>
-          <div className="pt-5">
-            <h1 className="text-1xl font-bold text-gray-900">
-              เพิ่มคะแนน review ให้ธุรกิจคุณ</h1>
+          <p className="text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
+            เพิ่มประสิทธิภาพการตลาดและการเข้าถึงลูกค้าด้วยโซลูชัน NFC ที่ล้ำสมัย 
+            พร้อมระบบจัดการที่ใช้งานง่าย เหมาะสำหรับธุรกิจทุกขนาด 
+            ช่วยให้คุณเชื่อมต่อกับลูกค้าได้อย่างไร้รอยต่อ
+          </p>
+          <div className="flex gap-4 justify-center mt-8">
+          
+            <Link href={'/chang-keng-key-pattaya'} className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
+              ดูตัวอย่างผลงาน
+            </Link>
+          </div>
+        </div>
+      </section>
 
-            <p className="text-xl text-gray-700 mt-4">ดันร้านติดอันดับ เพิ่มยอดขายได้ง่ายๆ ด้วย SEO + NFC 🚀</p>
-            <div className="mt-8">
-              <Link href={'/thepprathan-place'} className="mt-8 bg-blue-500 hover:bg-blue-700 !text-white font-bold py-2 px-5 rounded-[20px]">
-                ตัวอย่างโปรไฟล์
-              </Link>
+      {/* STATS SECTION */}
+      <section className="py-12 bg-gray-900/50">
+        <div className="container mx-auto grid md:grid-cols-4 gap-8 px-6">
+          {[
+            { number: "500+", label: "ธุรกิจที่ไว้วางใจเรา" },
+            { number: "50,000+", label: "การแสกนต่อเดือน" },
+            { number: "95%", label: "ความพึงพอใจของลูกค้า" },
+            { number: "200%", label: "เพิ่มการมีส่วนร่วมโดยเฉลี่ย" }
+          ].map((stat, index) => (
+            <div key={index} className="text-center p-6">
+              <div className="text-4xl font-bold text-blue-400 mb-2">{stat.number}</div>
+              <div className="text-gray-400">{stat.label}</div>
             </div>
-            <Image src={"/image/hero.jpg"} width={300} height={300} alt='nfc+seo' className="mx-auto py-3 my-5 rounded-[20px]" />
-            <div className="w-fit mx-auto mt-5">
-              {/* <Link href={'/register'} className="mt-8 bg-blue-500 mr-2 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded">
-                สนใจสั่งซื้อ
-              </Link> */}
+          ))}
+        </div>
+      </section>
 
+      {/* BENEFITS SECTION */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-16">
+            ทำไมต้องเลือกใช้ <span className="text-blue-400">NFC Smart Signage</span>
+          </h2>
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              {
+                icon: <FaMobile />,
+                title: "ใช้งานง่าย ไม่ต้องติดตั้งแอพ",
+                desc: "ลูกค้าเพียงแค่แตะสมาร์ทโฟนที่ป้าย NFC ก็สามารถเข้าถึงข้อมูลธุรกิจของคุณได้ทันที โดยไม่ต้องติดตั้งแอพพลิเคชั่นใดๆ เพิ่มเติม"
+              },
+              {
+                icon: <FaChartLine />,
+                title: "วิเคราะห์ผลแบบเรียลไทม์",
+                desc: "ติดตามสถิติการใช้งาน พฤติกรรมผู้ใช้ และประสิทธิภาพของแคมเปญได้แบบเรียลไทม์ผ่านแดชบอร์ดที่ใช้งานง่าย"
+              },
+              {
+                icon: <FaUserTie />,
+                title: "รองรับธุรกิจทุกประเภท",
+                desc: "ไม่ว่าจะเป็นร้านอาหาร โรงแรม ร้านค้า หรือสำนักงาน เราพร้อมปรับแต่งโซลูชันให้เหมาะกับความต้องการของธุรกิจคุณ"
+              }
+            ].map((benefit, index) => (
+              <div key={index} className="text-center p-8 bg-gray-800/50 rounded-2xl hover:bg-gray-800 transition">
+                <div className="text-5xl text-blue-400 mb-6 flex justify-center">{benefit.icon}</div>
+                <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{benefit.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SHOWCASE SECTION */}
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative h-[600px] rounded-2xl overflow-hidden">
+              <Image
+                src="/image/444.gif"
+                alt="NFC Showcase"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="space-y-6">
+              <h2 className="text-4xl font-bold">ระบบจัดการที่ครบครัน</h2>
+              <div className="space-y-8">
+                {[
+                  {
+                    icon: <FaLink />,
+                    title: "ปรับเปลี่ยนลิงก์ได้ตลอดเวลา",
+                    desc: "แก้ไขปลายทางของลิงก์ได้ทันทีผ่านระบบจัดการ โดยไม่ต้องเปลี่ยนป้าย NFC"
+                  },
+                  {
+                    icon: <FaComments />,
+                    title: "ระบบรีวิวอัตโนมัติ",
+                    desc: "กระตุ้นให้ลูกค้ารีวิวธุรกิจของคุณได้ง่ายๆ ช่วยเพิ่มความน่าเชื่อถือและอันดับใน Google"
+                  },
+                  {
+                    icon: <FaChartLine />,
+                    title: "รายงานประสิทธิภาพ",
+                    desc: "ดูสถิติการใช้งาน เวลาที่มีคนแตะมากที่สุด และข้อมูลอื่นๆ เพื่อปรับปรุงกลยุทธ์ทางธุรกิจ"
+                  }
+                ].map((feature, index) => (
+                  <div key={index} className="flex gap-4">
+                    <div className="text-3xl text-blue-400">{feature.icon}</div>
+                    <div>
+                      <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                      <p className="text-gray-400">{feature.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* 
-        <section className="bg-white rounded-[10px] shadow-sm   text-center p-8 h-fit my-auto bg-white rounded-[10px] shadow-sm   text-center p-8 h-fit my-auto my-8  my-8 h-screen">
-          <h2 className="text-2xl font-semibold">ลูกค้าของเรา</h2>
-          <Customer />
-        </section> */}
-        <Compare />
+      {/* PRICING SECTION */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold text-center mb-16">แพ็คเกจราคา</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Starter",
+                price: "฿990",
+                period: "ต่อเดือน",
+                features: [
+                  "NFC Tags 5 ชิ้น",
+                  "ระบบจัดการพื้นฐาน",
+                  "รายงานสถิติรายเดือน",
+                  "รองรับ 1,000 แสกน/เดือน"
+                ]
+              },
+              {
+                name: "Professional",
+                price: "฿1,990",
+                period: "ต่อเดือน",
+                features: [
+                  "NFC Tags 15 ชิ้น",
+                  "ระบบจัดการเต็มรูปแบบ",
+                  "รายงานสถิติแบบเรียลไทม์",
+                  "รองรับ 5,000 แสกน/เดือน",
+                  "ระบบรีวิวอัตโนมัติ"
+                ]
+              },
+              {
+                name: "Enterprise",
+                price: "฿3,990",
+                period: "ต่อเดือน",
+                features: [
+                  "NFC Tags ไม่จำกัด",
+                  "ระบบจัดการขั้นสูง",
+                  "API สำหรับองค์กร",
+                  "รองรับการแสกนไม่จำกัด",
+                  "ผู้จัดการระบบส่วนตัว"
+                ]
+              }
+            ].map((plan, index) => (
+              <div key={index} className="p-8 bg-gray-800/50 rounded-2xl hover:bg-gray-800 transition">
+                <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
+                <div className="text-3xl font-bold text-blue-400 mb-2">{plan.price}</div>
+                <div className="text-gray-400 mb-6">{plan.period}</div>
+                <ul className="space-y-4">
+                  {plan.features.map((feature, fIndex) => (
+                    <li key={fIndex} className="flex items-center gap-2">
+                      <FaCheckCircle className="text-blue-400" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button className="w-full mt-8 px-6 py-3 bg-blue-600 hover:bg-blue-700 transition rounded-full">
+                  เลือกแพ็คเกจนี้
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        {/* <section ref={promotionRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8  my-auto my-8  my-8 h-fit">
-          <h2 className="text-2xl font-semibold">Packages</h2>
-          <PackageComponent />
-        </section> */}
-        <section ref={clientsRef} className="bg-white rounded-[10px] shadow-sm   text-center p-8  my-auto my-8  my-8 h-fit">
-          <h2 className="text-2xl font-semibold text-nowrap">ทำไมต้องเรา ?</h2>
-          <p>&quot;เพราะเรามอบมากกว่าแค่รีวิว แต่คือการสร้างอนาคตให้ธุรกิจของคุณ&quot;</p>
-          <div className="mt-4 w-fit mx-auto">
-            <iframe
-              width="full"
-              height="215"
-              src="https://www.youtube.com/embed/sH0YJy_BHVE"
-              title="YouTube video player"
-              frameBorder="0"
-              className="rounded-[10px]"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+      {/* CALL TO ACTION */}
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black text-center">
+        <div className="container mx-auto px-6 max-w-4xl">
+          <h2 className="text-4xl font-bold mb-6">พร้อมที่จะเริ่มต้นใช้งานแล้วหรือยัง?</h2>
+          <p className="text-xl text-gray-400 mb-8">
+            เข้าร่วมกับกว่า 500 ธุรกิจที่ไว้วางใจเราในการเพิ่มยอดขายและการมีส่วนร่วมของลูกค้า
+            ด้วยโซลูชัน NFC ที่ล้ำสมัยของเรา
+          </p>
+          <div className="flex gap-4 justify-center">
+            <button className="px-8 py-4 text-lg font-semibold bg-blue-600 hover:bg-blue-700 transition rounded-full shadow-lg">
+              เริ่มต้นใช้งานฟรี
+            </button>
+            <button className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
+              ปรึกษาผู้เชี่ยวชาญ
+            </button>
           </div>
-        </section>
-        <section ref={reviewsRef} className="bg-white rounded-[10px] shadow-sm text-center p-8 h-fit my-auto my-8 space-y-4">
-          <h2 className="text-2xl font-semibold">ลูกค้าของเรา</h2>
-          <div className="flex flex-col items-start space-y-2">
-            <div className="flex items-center space-x-2">
-              <FaCut className="text-blue-500" />
-              <p className="text-lg">20 ร้านเสริมสวย</p>
-            </div>
-            <div className="flex items-center space-x-2">
-              <FaClinicMedical className="text-blue-500" />
-              <p className="text-lg">13 คลีนิค</p>
-            </div>
-            <div className="flex items-center space-x-2">
-              <FaUtensils className="text-blue-500" />
-              <p className="text-lg">70 ร้านอาหาร</p>
-            </div>
-          </div>
-        </section>
-        <section ref={contactRef} className="bg-white rounded-[10px] shadow-sm    text-center p-8 h-fit  my-8">
-          <Image src={"/logo.png"} width={90} height={90} alt='nfc+seo' className="mx-auto py-3 rounded-[20px]" />
-          <h2 className="text-2xl font-semibold text-blue-400">ติดต่อ</h2>
-          ต้องการสอบถามข้อมูลเพิ่มเติม
-          <h2 className="text-2xl font-bold">tap-on-it.com</h2>
-          <p>063-674-9204</p>
-          <p>support@tap-on-it.com</p>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+    </main>
   );
 }
