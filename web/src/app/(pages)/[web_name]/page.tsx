@@ -5,12 +5,10 @@ import Reviews from './components/Reviews';
 import { FaMapPin, FaStar } from 'react-icons/fa';
 import Custom404 from '../notfound';
 import { getProfileBySlug } from '@/app/shared/services/superbase.service';
-import Image from 'next/image';
 import Link from 'next/link';
 import CopyLinkButton from './components/CopyLinkButton';
 import RedirectIfNeeded from './components/RedirectIfNeeded';
 import Footer from './components/Footer';
-import Menu from './components/Menu';
 
 type PageParams = {
   params: {
@@ -31,7 +29,7 @@ export async function generateMetadata({ params }: PageParams) {
 
   return {
     title: `${profileData.profile_name}`,
-    description: `${profileData.details}.`,
+    description: `${profileData.details}`,
     keywords: `tap-on-it.com, nfc-${profileData.profile_name}, menu-${profileData.profile_name}, reviews-${profileData.profile_name}, contact-${profileData.details}`,
     image: '/logo.jpg',
   };

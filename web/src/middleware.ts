@@ -1,22 +1,17 @@
-// filepath: /Users/dev_nack/Desktop/ppc-web/src/middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import UAParser from 'ua-parser-js';
 
 export function middleware(request: NextRequest) {
-  const ua = request.headers.get('user-agent') || '';
-  const parser = new UAParser(ua);
-  const deviceType = parser.getDevice().type;
+  const url = request.nextUrl.clone();
+  const hostname = request.headers.get('host') || '';
+  const subdomain = hostname.split('.')[0];
 
-  // if (deviceType === 'mobile') {
-  //   console.log('Redirecting to mobile');
-  //   return NextResponse.rewrite(new URL('/(front)/(mobile)', request.url));
-  // } else {
-  //   console.log('Redirecting to client');
-  return NextResponse.rewrite(new URL('/', request.url));
-  // }
+  // Check if the subdomain is valid and not the main domain
+  if (subdomain && subdomain !== 'www' && subdomain !== 'tap-on-it.com') {
+    url.pathname = `/${subdomain}${url.pathname}`;
+    return NextResponse.rewrite(url);
+  }
+
+  // If no subdomain, proceed as normal
+  return NextResponse.next();
 }
-
-export const config = {
-  matcher: ['/'],
-};
