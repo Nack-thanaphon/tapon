@@ -1,22 +1,37 @@
-// filepath: /Users/dev_nack/Desktop/ppc-web/src/middleware.ts
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-import UAParser from 'ua-parser-js';
+import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const ua = request.headers.get('user-agent') || '';
-  const parser = new UAParser(ua);
-  const deviceType = parser.getDevice().type;
+  const host = request.headers.get('host') || ''; 
+  const url = request.nextUrl.clone();
 
-  // if (deviceType === 'mobile') {
-  //   console.log('Redirecting to mobile');
-  //   return NextResponse.rewrite(new URL('/(front)/(mobile)', request.url));
-  // } else {
-  //   console.log('Redirecting to client');
-  return NextResponse.rewrite(new URL('/', request.url));
-  // }
+  // Check if running in development or production
+  const isDevelopment = host.includes('localhost');
+
+  // Extract subdomain
+  let subdomain = '';
+  if (isDevelopment) {
+    // In development, subdomain is the first part of the hostname before the port
+    const parts = host.split(':');
+    subdomain = parts[0].split('.')[0];
+  } else {
+    // In production, subdomain is the first part of the hostname
+    subdomain = host.split('.')[0];
+  }
+
+  // Only apply logic if it’s your domain in production or localhost in development
+  if (isDevelopment || host.endsWith('tap-it-on.com')) {
+    // If no subdomain or it's "www", serve the root app (no rewrite)
+    if (!subdomain || subdomain === 'www' || subdomain === 'localhost') {
+      return NextResponse.next();
+    }
+
+    // Otherwise, rewrite to /[web_name] with subdomain as the path
+    url.pathname = `/${subdomain}${url.pathname}`; 
+    // For example, "abc.tap-it-on.com" goes to "/abc"
+
+    return NextResponse.rewrite(url);
+  }
+
+  // If it’s some other domain or custom domain, do nothing special
+  return NextResponse.next();
 }
-
-export const config = {
-  matcher: ['/'],
-};
