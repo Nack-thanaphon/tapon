@@ -112,7 +112,6 @@ export default function HomePage() {
           <h2 className="text-2xl font-bold">tap-on-it.com</h2>
           <p>063-674-9204</p>
           <p>support@tap-on-it.com</p>
-          <Image src={"/bussiness-logo.jpeg"} width={300} height={300} alt='nfc+seo' className="mx-auto py-3 rounded-[20px]" />
         </section>
       </div>
     </>
