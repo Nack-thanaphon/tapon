@@ -12,7 +12,7 @@ export default function RootLayout({
     <ReactQueryProvider>
       <html lang="en">
         <head>
-          <link rel="shortcut icon" href="/vercel.svg" />
+          <link rel="shortcut icon" href="/image/logo.jpg" />
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9CN5S7MBH"></script>
           <script dangerouslySetInnerHTML={{
             __html: `

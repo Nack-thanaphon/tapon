@@ -37,6 +37,7 @@ export interface ProfileData {
   address: string;
   type: string;
   location: string;
+  business_type: string;
   reviews: string[];
 };
 
@@ -101,19 +102,22 @@ const getAllProfiles = async (): Promise<SupabaseResponse<ProfileData[]>> => {
 };
 
 
-const getProfileBySlug = async (slug: string): Promise<SupabaseResponse<ProfileData>> => {
+const getProfileBySlug = async (slug: string): Promise<SupabaseResponse<any>> => {
   const { data, error } = await supabase
     .from('business_profiles')
-    .select('*')
+    .select(`
+      *,
+      business_type:type (id, name)
+    `)
     .eq('slug', slug)
     .single();
 
+  console.log('data', data);
   if (error) {
     console.error('Error fetching profile by slug:', error);
     return { data: null, error };
   }
   return { data, error: null };
 };
-
 export { createProfile, updateProfile, getAllProfiles, getProfileBySlug };
 

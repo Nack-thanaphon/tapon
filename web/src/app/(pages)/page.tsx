@@ -8,42 +8,72 @@ export default function HomePage() {
   return (
     <main className="bg-black text-white min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative flex items-center justify-center min-h-screen text-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-black to-gray-900 opacity-90"></div>
-        <Image
-          src="/image/15575663.gif"
-          alt="Hero background"
-          fill
-          className="object-cover opacity-30"
-          priority
-        />
-        <div className="relative z-10 max-w-4xl mx-auto px-6">
-          <h1 className="text-5xl md:text-6xl font-extrabold uppercase leading-[1.2]">
-            <span className="text-blue-500">ยกระดับ</span>ธุรกิจของคุณ
-            <br /> ด้วยเทคโนโลยี <span className="text-blue-300">NFC</span>
-          </h1>
-          <p className="text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
-            เพิ่มประสิทธิภาพการตลาดและการเข้าถึงลูกค้าด้วยโซลูชัน NFC ที่ล้ำสมัย 
-            พร้อมระบบจัดการที่ใช้งานง่าย เหมาะสำหรับธุรกิจทุกขนาด 
-            ช่วยให้คุณเชื่อมต่อกับลูกค้าได้อย่างไร้รอยต่อ
-          </p>
-          <div className="flex gap-4 justify-center mt-8">
-          
-            <Link href={'/chang-keng-key-pattaya'} className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
-              ดูตัวอย่างผลงาน
-            </Link>
+      <section className="relative flex items-center  min-h-screen ">
+        <div className="relative z-10  mx-auto ">
+          <div className="lg:flex justify-between gap-5 p-5">
+            <div className="text-start mb-3">
+              <div className="text-5xl md:text-6xl font-extrabold uppercase space-y-4">
+                <p className="text-blue-500">เพิ่มยอดรีวิว</p>
+                <p>แค่แตะและรีวิว</p>
+                <p className="text-blue-300">ไม่ต้องพิมพ์ค้นหาให้ยุ่งยาก</p>
+              </div>
+              <p className="text-xl text-gray-300 mt-6 max-w-3xl mx-auto">
+
+              </p>
+              <div className="flex gap-4 justify-start mt-8">
+
+                <Link href="m.me/545472585319973" className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
+                  ปรึกษาเรา
+                </Link>
+              </div>
+            </div>
+            <Image
+              src="/image/Showcase1.gif"
+              alt="Hero background"
+              width={440}
+              height={40}
+              className="object-contain rounded-2xl"
+            />
           </div>
         </div>
       </section>
 
+      <section className="py-12 bg-gray-900/50  mb-3">
+        <h2 className="text-4xl font-bold text-center">ขนาดสินค้า</h2>
+        <div className="container mx-auto grid  gap-8 px-6">
+          {[
+            {
+              number: "140 * 120",
+
+              label: "แบบตั้งโต๊ะ",
+              image: "/image/google.webp"
+
+            },
+
+          ].map((stat, index) => (
+            <div key={index} className="text-center p-6">
+              <Image
+                src={stat.image}
+                alt="Hero background"
+                width={350}
+                height={350}
+                className="object-contain rounded-2xl my-4 mx-auto"
+              />
+              <div className="text-4xl font-bold text-blue-400 mb-2">{stat.number}</div>
+              <div className="text-gray-400">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
       {/* STATS SECTION */}
       <section className="py-12 bg-gray-900/50">
-        <div className="container mx-auto grid md:grid-cols-4 gap-8 px-6">
+        <h2 className="text-4xl font-bold text-center">สถิติผู้ใช้บริการ</h2>
+
+        <div className="container mx-auto grid md:grid-cols-3 gap-8 px-6">
           {[
-            { number: "500+", label: "ธุรกิจที่ไว้วางใจเรา" },
-            { number: "50,000+", label: "การแสกนต่อเดือน" },
+            { number: "20+", label: "ธุรกิจที่ไว้วางใจเรา" },
+            { number: "50,000+", label: "ผู้เข้าใช้งาน" },
             { number: "95%", label: "ความพึงพอใจของลูกค้า" },
-            { number: "200%", label: "เพิ่มการมีส่วนร่วมโดยเฉลี่ย" }
           ].map((stat, index) => (
             <div key={index} className="text-center p-6">
               <div className="text-4xl font-bold text-blue-400 mb-2">{stat.number}</div>
@@ -56,8 +86,8 @@ export default function HomePage() {
       {/* BENEFITS SECTION */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16">
-            ทำไมต้องเลือกใช้ <span className="text-blue-400">NFC Smart Signage</span>
+          <h2 className="text-2xl lg:text-4xl font-bold text-center mb-16">
+            ทำไมต้องเลือกใช้ <span className="text-blue-400">ป้ายแตะรีวิว</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-12">
             {[
@@ -137,43 +167,32 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-center mb-16">แพ็คเกจราคา</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                name: "Starter",
-                price: "฿990",
-                period: "ต่อเดือน",
+                name: "ร้านค้าขนาดเล็ก",
+                price: "490 บาท",
+                period: "บาท",
+                features: [
+                  "NFC Tags 1 ชิ้น",
+                  "ระบบเว็บโปรไฟล์",
+                  "สามารถเปลี่ยนลิงค์ได้ 3 ครั้ง",
+                  "จัดส่งฟรี",
+                ]
+              },
+              {
+                name: "ร้านค้าขนาดกลาง",
+                price: "1,990 บาท",
+                period: "บาท",
                 features: [
                   "NFC Tags 5 ชิ้น",
-                  "ระบบจัดการพื้นฐาน",
+                  "ระบบเว็บโปรไฟล์",
                   "รายงานสถิติรายเดือน",
-                  "รองรับ 1,000 แสกน/เดือน"
+                  "สามารถเปลี่ยนลิงค์ได้ 3 ครั้ง",
+                  "ช่วยทำ SEO ให้กับร้านค้า",
+                  "จัดส่งฟรี",
                 ]
               },
-              {
-                name: "Professional",
-                price: "฿1,990",
-                period: "ต่อเดือน",
-                features: [
-                  "NFC Tags 15 ชิ้น",
-                  "ระบบจัดการเต็มรูปแบบ",
-                  "รายงานสถิติแบบเรียลไทม์",
-                  "รองรับ 5,000 แสกน/เดือน",
-                  "ระบบรีวิวอัตโนมัติ"
-                ]
-              },
-              {
-                name: "Enterprise",
-                price: "฿3,990",
-                period: "ต่อเดือน",
-                features: [
-                  "NFC Tags ไม่จำกัด",
-                  "ระบบจัดการขั้นสูง",
-                  "API สำหรับองค์กร",
-                  "รองรับการแสกนไม่จำกัด",
-                  "ผู้จัดการระบบส่วนตัว"
-                ]
-              }
             ].map((plan, index) => (
               <div key={index} className="p-8 bg-gray-800/50 rounded-2xl hover:bg-gray-800 transition">
                 <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
@@ -187,9 +206,6 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <button className="w-full mt-8 px-6 py-3 bg-blue-600 hover:bg-blue-700 transition rounded-full">
-                  เลือกแพ็คเกจนี้
-                </button>
               </div>
             ))}
           </div>
@@ -205,12 +221,9 @@ export default function HomePage() {
             ด้วยโซลูชัน NFC ที่ล้ำสมัยของเรา
           </p>
           <div className="flex gap-4 justify-center">
-            <button className="px-8 py-4 text-lg font-semibold bg-blue-600 hover:bg-blue-700 transition rounded-full shadow-lg">
-              เริ่มต้นใช้งานฟรี
-            </button>
-            <button className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
+            <Link href="m.me/545472585319973" className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
               ปรึกษาผู้เชี่ยวชาญ
-            </button>
+            </Link>
           </div>
         </div>
       </section>

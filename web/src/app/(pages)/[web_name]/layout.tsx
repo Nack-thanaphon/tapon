@@ -12,7 +12,7 @@ export default function RootLayout({
       <ReactQueryProvider >
         <html lang="en">
           <head>
-            <link rel="shortcut icon" href="/vercel.svg" />
+            <link rel="shortcut icon" href="/image/logo.jpg" />
           </head>
           <body>
             {children}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './components/Header';
 import Reviews from './components/Reviews';
-import { FaMapPin, FaStar, FaPhone, FaClock, FaUtensils, FaInstagram, FaFacebook, FaLine } from 'react-icons/fa';
+import { FaMapPin, FaStar, FaPhone, FaClock, FaUtensils, FaInstagram, FaFacebook, FaLine, FaStore } from 'react-icons/fa';
 import Custom404 from '../notfound';
 import { getProfileBySlug } from '@/app/shared/services/superbase.service';
 import Link from 'next/link';
@@ -65,7 +65,7 @@ const Page = async ({ params }: PageParams) => {
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">{profileData.profile_name}</h1>
             <div className="flex items-center justify-center gap-2 text-gray-600">
-              <span className="px-3 py-1 bg-blue-50 rounded-full text-sm">{profileData.type}</span>
+              <span className="px-3 py-1 bg-blue-50 rounded-full text-sm">{profileData.business_type.name}</span>
             </div>
           </div>
 
@@ -86,10 +86,10 @@ const Page = async ({ params }: PageParams) => {
               </div>
             </div>
             <div className="flex items-center p-4 bg-gray-50 rounded-xl">
-              <FaUtensils className="text-blue-500 text-xl mr-3" />
+              <FaStore className="text-blue-500 text-xl mr-3" />
               <div>
                 <h3 className="font-medium text-gray-700">ประเภทร้าน</h3>
-                <p className="text-gray-600">{profileData.type}</p>
+                <p className="text-gray-600">{profileData.business_type.name}</p>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@ const Page = async ({ params }: PageParams) => {
           </div>
 
           {/* Reviews Section */}
-          <div className="mb-8">
+          {/* <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-gray-800">รีวิวจากลูกค้า</h2>
               <div className="flex items-center">
@@ -112,7 +112,7 @@ const Page = async ({ params }: PageParams) => {
               </div>
             </div>
             <Reviews />
-          </div>
+          </div> */}
 
           {/* Social Media Links */}
           <div className="flex justify-center gap-4 mb-8">
@@ -130,14 +130,14 @@ const Page = async ({ params }: PageParams) => {
           {/* Navigation Button */}
           <Link 
             href="/" 
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl p-4 flex justify-center items-center w-full transition-colors duration-300"
+            className="bg-red-500 hover:bg-red-600 text-white rounded-xl p-4 flex justify-center items-center w-full transition-colors duration-300"
           >
             <FaMapPin className="mr-2" />
             <span className="font-medium">นำทางไปยังร้าน</span>
           </Link>
         </div>
 
-        <Footer />
+        <Footer name={profileData.slug} />
       </div>
     </>
   );

@@ -6,7 +6,7 @@ import { FaCopy } from 'react-icons/fa';
 const CopyLinkButton = () => {
   const copyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    alert('Link copied to clipboard!');
+    alert('คัดลอกลิงค์สำเร็จ!');
   };
 
   return (

@@ -1,9 +1,13 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer = ({
+    name
+}: {
+    name: string
+}) => {
     return (
         <div className="text-center my-4">
-            www.tab-on.com/suriyan
+            www.tab-on.com/{name}
         </div>
     )
 }
