@@ -22,7 +22,7 @@ export default function HomePage() {
               </p>
               <div className="flex gap-4 justify-start mt-8">
 
-                <Link href="m.me/545472585319973" className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
+                <Link href="https://m.me/545472585319973" className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
                   ปรึกษาเรา
                 </Link>
               </div>
@@ -221,7 +221,7 @@ export default function HomePage() {
             ด้วยโซลูชัน NFC ที่ล้ำสมัยของเรา
           </p>
           <div className="flex gap-4 justify-center">
-            <Link href="m.me/545472585319973" className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
+            <Link href="https://m.me/545472585319973" className="px-8 py-4 text-lg font-semibold border-2 border-blue-400 hover:bg-blue-400/10 transition rounded-full">
               ปรึกษาผู้เชี่ยวชาญ
             </Link>
           </div>
