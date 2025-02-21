@@ -57,7 +57,7 @@ const Page = async ({ params }: PageParams) => {
         {/* Top Action Buttons */}
         <div className="flex justify-between mx-auto gap-3 mb-4 max-w-4xl">
           <Link
-            href={profileData.review_url}
+            href={profileData.review_url ?? "#"}
             className="bg-white rounded-xl p-3 w-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300"
           >
             <FaStar className="text-yellow-500 mr-2 text-xl" />
