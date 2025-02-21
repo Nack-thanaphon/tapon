@@ -1,20 +1,14 @@
-import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import {
-  FaMapPin,
-  FaStar,
-  FaPhone,
-  FaClock,
-  FaInstagram,
-  FaFacebook,
-  FaLine,
-  FaStore,
-} from "react-icons/fa";
-import Custom404 from "../notfound";
-import { getProfileBySlug } from "@/app/shared/services/superbase.service";
-import Link from "next/link";
-import CopyLinkButton from "./components/CopyLinkButton";
+import React from 'react';
+import Header from './components/Header';
+import Reviews from './components/Reviews';
+import { FaMapPin, FaStar, FaPhone, FaClock, FaUtensils, FaInstagram, FaFacebook, FaLine, FaStore } from 'react-icons/fa';
+import Custom404 from '../notfound';
+import { getProfileBySlug } from '@/app/shared/services/superbase.service';
+import Link from 'next/link';
+import CopyLinkButton from './components/CopyLinkButton';
+import RedirectIfNeeded from './components/RedirectIfNeeded';
+import Footer from './components/Footer';
+import { notFound, redirect } from 'next/navigation';
 
 type PageParams = {
   params: {
@@ -22,77 +16,48 @@ type PageParams = {
   };
 };
 
-type ProfileData = {
-  profile_name: string;
-  business_type: { name: string };
-  phone: string;
-  address: string;
-  is_review_redirect: boolean;
-  review_url: string;
-  slug: string;
-};
-
-// 📌 Fetching profile data and handling server-side redirect
-export async function getServerSideProps({ params }: PageParams) {
-  const { web_name } = params;
-  const { data: profileData, error } = await getProfileBySlug(web_name);
-
-  if (error || !profileData) {
-    return { notFound: true };
-  }
-
-  // ✅ Perform SEO-friendly redirect if needed
-  if (profileData.is_review_redirect) {
-    return {
-      redirect: {
-        destination: profileData.review_url,
-        permanent: false, // 302 Redirect
-      },
-    };
-  }
-
-  return {
-    props: { profileData },
-  };
-}
-
-// 📌 SEO Metadata
 export async function generateMetadata({ params }: PageParams) {
   const { web_name } = params;
   const { data: profileData, error } = await getProfileBySlug(web_name);
 
   if (error || !profileData) {
     return {
-      title: "Profile not found",
-      description: "The profile you are looking for does not exist.",
+      title: 'Profile not found',
+      description: 'The profile you are looking for does not exist.',
     };
   }
 
   return {
-    title: `${profileData.profile_name} - ร้านอาหารชั้นนำ`,
-    description: `${profileData.address} - บริการอาหารคุณภาพ สดใหม่ทุกวัน`,
-    keywords: `tap-on-it.com, nfc-${profileData.profile_name}, menu-${profileData.profile_name}, reviews-${profileData.profile_name}, contact-${profileData.profile_name}, ร้านอาหาร, อาหารอร่อย`,
-    image: "/logo.jpg",
+    title: `${profileData.profile_name}`,
+    description: `${profileData.details}`,
+    keywords: `tap-on-it.com, 
+    nfc-${profileData.profile_name},
+    reviews-${profileData.profile_name},
+    contact-${profileData.details}`,
+    image: '/logo.jpg',
   };
 }
 
-// 📌 Main Page Component
 const Page = async ({ params }: PageParams) => {
   const { web_name } = params;
   const { data: profileData, error } = await getProfileBySlug(web_name);
-
   if (error || !profileData) {
-    return <Custom404 />;
+    return notFound();
   }
-  
+
+
+  if (profileData.is_review_redirect && profileData.review_url) {
+    redirect(profileData.review_url);
+  }
+
   return (
     <>
       <Header />
       <div className="container mx-auto p-4 bg-gray-50 min-h-screen">
         {/* Top Action Buttons */}
-        <div className="flex justify-between mx-auto gap-3  mb-4 max-w-4xl">
+        <div className="flex justify-between mx-auto gap-3 mb-4 max-w-4xl">
           <Link
-            href={profileData.review_url ?? "#"}
+            href={profileData.review_url}
             className="bg-white rounded-xl p-3 w-full flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300"
           >
             <FaStar className="text-yellow-500 mr-2 text-xl" />
@@ -102,7 +67,7 @@ const Page = async ({ params }: PageParams) => {
         </div>
 
         {/* Main Profile Card */}
-        <div className="rounded-2xl space-y-6  p-3 lg:p-8 max-w-4xl mx-auto relative bg-white shadow-md">
+        <div className="rounded-2xl space-y-6  p-2 lg:p-8 max-w-4xl mx-auto relative bg-white shadow-md">
           {/* Profile Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">{profileData.profile_name}</h1>
