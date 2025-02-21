@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageParams) {
     nfc-${profileData.profile_name},
     reviews-${profileData.profile_name},
     contact-${profileData.details}`,
-    image: '/logo.jpg',
+    image: profileData.logo ?? '/image/logo.jpg',
   };
 }
 
